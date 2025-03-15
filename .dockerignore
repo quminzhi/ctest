@@ -1,0 +1,19 @@
+# Ignore node_modules
+node_modules
+
+# Ignore logs
+logs
+*.log
+
+# Ignore temporary files
+tmp
+*.tmp
+
+# Ignore build directories
+build
+*.o
+*.a
+*.so
+*.dylib
+*.exe
+*.out
