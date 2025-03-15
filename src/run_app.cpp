@@ -1,4 +1,4 @@
-#include "large_table.h"
+#include "rdtsc.h"
 #include <iostream>
 
 using namespace std;
@@ -14,7 +14,7 @@ int run_app(int argc, char **argv) {
     }
   }
 
-  large_table();
+  run_rdtsc();
 
   return 0;
 }

@@ -1,4 +1,4 @@
-#include "large_table.h"
+#include "rdtsc.h"
 #include <pthread.h>
 #include <stdint.h>
 #include <stdio.h>
@@ -33,7 +33,7 @@ void *thread_function(void *arg) {
   return NULL;
 }
 
-void large_table() {
+void run_rdtsc() {
   pthread_t threads[3];
 
   // Initialize the barrier for 3 threads

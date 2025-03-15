@@ -22,7 +22,7 @@ We have two examples in the applet: calculator and cirqueue.
 
 ## C Compatibility
 
-Write c program as a library (see `big_table.cpp`) and run it in `run_app()`.
+Write c program as a library (see `rdtsc.cpp`) and run it in `run_app()`.
 
 ## Add Customized Library
 

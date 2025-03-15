@@ -1,6 +1,6 @@
 #ifndef LARGE_TABLE
 #define LARGE_TABLE
 
-void large_table();
+void run_rdtsc();
 
 #endif // LARGE_TABLE
