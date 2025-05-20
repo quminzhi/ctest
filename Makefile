@@ -1,4 +1,4 @@
-EXEC := unixm
+EXEC := ctest 
 
 # run
 .PHONY: run

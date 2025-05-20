@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.20)
 
-project(unixm)
-set(EXEC "unixm")
+project(ctest)
+set(EXEC "ctest")
 
 # import google test module
 enable_testing()

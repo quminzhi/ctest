@@ -2,12 +2,26 @@
 #include <pthread.h>
 #include <stdint.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 // Function to read the cycle counter on ARM CPUs
 static inline uint64_t rdtsc(void) {
   uint64_t value;
-  // Read the cycle counter
+
+
+#if defined(__aarch64__)
+  // ARM64: Read from cntvct_el0 (requires user-mode access to be enabled)
   asm volatile("mrs %0, cntvct_el0" : "=r"(value));
+#elif defined(__x86_64__)
+  // x86_64: Use rdtsc instruction
+  unsigned int lo, hi;
+  asm volatile("rdtsc" : "=a"(lo), "=d"(hi));
+  value = ((uint64_t)hi << 32) | lo;
+#else
+  fprintf(stderr, "rdtsc() not supported on this architecture.\n");
+  abort();  // crash the program
+#endif
+
   return value;
 }
 
