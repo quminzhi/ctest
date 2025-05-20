@@ -1,0 +1,22 @@
+---
+BasedOnStyle: GNU
+IndentWidth: 2
+UseTab: Never
+BreakBeforeBraces: Attach
+AllowShortIfStatementsOnASingleLine: false
+IndentCaseLabels: true
+ColumnLimit: 80
+PointerAlignment: Right
+SortIncludes: false
+AlignAfterOpenBracket: Align
+AlignConsecutiveAssignments: true
+AlignConsecutiveDeclarations: true
+AlignEscapedNewlines: Right
+AlignOperands: true
+AlignTrailingComments: true
+BreakBeforeBinaryOperators: NonAssignment
+BreakConstructorInitializers: BeforeColon
+CompactNamespaces: false
+KeepEmptyLinesAtTheStartOfBlocks: true
+SpaceBeforeParens: ControlStatements
+AlignConsecutiveMacros: true

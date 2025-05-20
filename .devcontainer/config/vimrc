@@ -1,0 +1,188 @@
+" Leader key
+let g:mapleader = " "
+
+syntax on
+
+" Set colorscheme and make the background tranparent
+if $TERM_APP == "dracula"
+  colorscheme dracula
+elseif $TERM_APP == "wood"
+  colorscheme everforest
+endif
+autocmd vimenter * hi Normal guibg=NONE ctermbg=NONE
+
+" General settings
+set encoding=utf-8
+set fileencoding=utf-8
+set relativenumber
+set incsearch
+set title
+set autoindent
+set smartindent
+set hlsearch
+set showcmd
+set cmdheight=1
+set scrolloff=10
+set shell=fish
+set backupskip+=/tmp/*,/private/tmp/*
+set ignorecase " Case insensitive searching UNLESS /C or capital in search
+set smarttab
+set smartcase
+set breakindent
+set shiftwidth=2
+set tabstop=2
+set softtabstop=2
+set expandtab
+set backspace=start,eol,indent
+set path+=** " Finding files - Search down into subfolders
+set wildignore+=*/node_modules/*
+set noswapfile
+set nobackup
+set undodir=~/.vim/undodir
+set undofile
+
+" Status Line
+set laststatus=2 " Show status only if there are more than one window
+set statusline=
+set statusline +=%1*\ %n\ %*            "buffer number
+set statusline +=%4*\ %<%F%*            "full path
+set statusline +=%1*%=%5l%*             "current line
+set statusline +=%1*%4v\ %*             "virtual column number
+set statusline +=%2*0x%04B\ %*          "character under cursor
+
+" Folding
+set nofoldenable
+set foldmethod=syntax
+set foldcolumn=0
+setlocal foldlevel=1
+set foldnestmax=2
+set noerrorbells
+
+" Wrap
+set wrap
+set textwidth=80
+set linebreak
+set showbreak=+++
+
+" Split windows
+set splitbelow " Put new windows below current
+set splitright " Put new windows right of current
+set mouse=
+
+" Highlights
+set cursorline
+
+" Add asterisks in block comments
+set formatoptions+=r
+
+set timeoutlen=1000 ttimeoutlen=0
+
+filetype plugin on
+filetype indent on
+
+set colorcolumn=
+" highlight ColorColumn ctermbg=0 guibg=lightgrey
+
+" User mappings
+inoremap jf <Esc>
+nnoremap J G
+nnoremap H ^
+xnoremap H ^
+nnoremap L $
+xnoremap L $
+nnoremap U <C-r>  " Redo
+nnoremap <Leader>n :nohlsearch<CR>
+nnoremap , `
+
+" Do not yank with x
+nnoremap x "_x
+
+" Increment/decrement
+nnoremap + <C-a>
+nnoremap - <C-x>
+
+" Select all
+nnoremap <C-a> gg<S-v>G
+
+" Save with root permission (not working for now)
+" Command for saving with root permissions (not working in this version of Vim)
+" command! W w !sudo tee > /dev/null %
+
+" Disable continuations
+nnoremap <Leader>o o<Esc>^Da
+nnoremap <Leader>O O<Esc>^Da
+
+" Jumplist
+nnoremap <C-m> <C-i>
+
+" New tab
+nnoremap te :tabedit<CR>
+nnoremap <tab> :tabnext<CR>
+nnoremap <S-tab> :tabprev<CR>
+
+" Split window
+nnoremap <Leader>s :split<CR>
+nnoremap <Leader>v :vsplit<CR>
+
+" Move window
+nnoremap <Leader>h <C-w>h
+nnoremap <Leader>k <C-w>k
+nnoremap <Leader>j <C-w>j
+nnoremap <Leader>l <C-w>l
+
+" Resize window
+nnoremap <Leader><left> <C-w><
+nnoremap <Leader><right> <C-w>>
+nnoremap <Leader><up> <C-w>+
+nnoremap <Leader><down> <C-w>-
+
+" Diagnostics
+nnoremap <C-j> :lua vim.diagnostic.goto_next()<CR>
+
+" Display non-printable characters or not
+nnoremap <Leader>. :call ToggleList()<CR>
+
+" Wildmenu Search
+" enable auto completion menu after pressing TAB.
+set wildmenu
+" make wildmenu behave like similar to Bash completion.
+set wildmode=list:longest
+" there are certain files that we would never want to edit with Vim.
+" wildmenu will ignore files with these extensions.
+set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
+
+" Function to toggle list option
+function! ToggleList()
+  if &list
+    set nolist
+  else
+    set list
+  endif
+endfunction
+
+" Ctags
+set tags=./tags;,tags;  " recursive search
+
+" Enable cscope
+set cscopeverbose  " Show what's happening
+
+if filereadable("cscope.out")
+    silent! cs add cscope.out
+endif
+
+nnoremap ]s :cs find s <C-R>=expand("<cword>")<CR><CR>  " Symbol
+nnoremap ]d :vert scs find g <C-R>=expand("<cword>")<CR><CR>  " Definition
+nnoremap ]g :cs find g <C-R>=expand("<cword>")<CR><CR>  " Definition
+nnoremap ]s :cs find c <C-R>=expand("<cword>")<CR><CR>  " Called by
+"nnoremap <leader>ct :cs find t <C-R>=expand("<cword>")<CR><CR>  " Text
+"nnoremap <leader>ce :cs find e <C-R>=expand("<cword>")<CR><CR>  " Egrep
+nnoremap ]f :cs find f <C-R>=expand("<cfile>")<CR><CR>  " File
+nnoremap ]i :cs find i <C-R>=expand("<cfile>")<CR><CR>  " Includes
+nnoremap ]a :cs find d <C-R>=expand("<cword>")<CR><CR>  " Assignments
+
+" Clang-format
+" Format selected region with clang-format
+vnoremap [v :!clang-format<CR>
+
+" Format the current buffer
+nnoremap [f :%!clang-format<CR>
