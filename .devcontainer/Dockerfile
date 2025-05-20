@@ -1,6 +1,9 @@
 # Use Debian Bookworm as the base image
 FROM debian:bookworm-slim
 
+# Non-interactive install                                                                                                                
+ENV DEBIAN_FRONTEND=noninteractive
+
 # Install required tools and dependencies
 RUN apt-get update && apt-get install -y \
     build-essential \
