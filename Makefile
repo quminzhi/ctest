@@ -15,6 +15,22 @@ build:
 test:
 	@cd ./build && ctest
 
+.PHONY: db
+db: ctags cscope
+
+.PHONY: ctags
+ctags:
+	ctags -R --languages=C,C++ --exclude=.git
+
+.PHONY: cscope
+cscope:
+	@find . -name "*.[ch]" -o -name "*.cpp" -o -name "*.hpp" > cscope.files
+	cscope -b -q -k
+
+.PHONY: clean-db
+clean-db:
+	rm -rf compile_commands.json ctags cscope.*
+
 # clean
 .PHONY: clean
 clean:
